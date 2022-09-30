@@ -1,18 +1,26 @@
+import '../dados/categoria_cnh.dart';
+
 class CNH {
   late String numeroRegistro;
   late DateTime dataValidade;
   late DateTime dataPrimeiraHabilitacao;
+  late CategoriaCNH categoriaCNH;
 
   CNH(this.numeroRegistro, this.dataValidade) {}
 
   bool validarCNH() {
     return validarTamanho() &&
+        validaCategoria() &&
         validarDataValidade() &&
         validarDataPrimeiraHabilitacao();
   }
 
   bool validarTamanho() {
     return numeroRegistro.length == 11;
+  }
+
+  bool validaCategoria() {
+    return categoriaCNH != 1;
   }
 
   bool validarDataValidade() {

@@ -46,7 +46,7 @@ class Cliente {
     int anoNascimento = dataNascimento.year;
 
     int idade = anoAtual - anoNascimento;
-    if (idade > 21) {
+    if (idade >= 21) {
       return true;
     } else {
       return false;
