@@ -1,4 +1,9 @@
+import 'dados_carro.dart';
+import 'dados_cliente.dart';
+
 class DadosLocacao {
+  late DadosCarro carro;
+  late DadosCliente cliente;
   late DateTime dataLocacao;
   late double quilometragemLocacao;
   late double valorCalcao;

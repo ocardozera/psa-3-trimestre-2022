@@ -6,7 +6,7 @@ class CNH {
   late DateTime dataPrimeiraHabilitacao;
   late CategoriaCNH categoriaCNH;
 
-  CNH(this.numeroRegistro, this.dataValidade) {}
+  CNH({required this.numeroRegistro, required this.dataValidade, required this.dataPrimeiraHabilitacao, required this.categoriaCNH}) {}
 
   bool validarCNH() {
     return validarTamanho() &&
