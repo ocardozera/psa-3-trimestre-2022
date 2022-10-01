@@ -1,3 +1,4 @@
+import '../entidade/carro.dart';
 import '../entidade/cnh.dart';
 import 'tipo_combustivel.dart';
 
@@ -28,4 +29,20 @@ class DadosCarro {
       required this.tipoCombustivel,
       required this.potenciaCv,
       required this.disponivel});
+
+  Carro dadosToEntity() {
+    return Carro(
+      modelo: modelo, 
+      valorBaseLocacao: valorBaseLocacao, 
+      quilometragem: quilometragem, 
+      anoFabricacao: anoFabricacao, 
+      anoModelo: anoModelo, 
+      placa: placa, 
+      renavam: renavam, 
+      chassis: chassis, 
+      categoria: categoria, 
+      tipoCombustivel: tipoCombustivel, 
+      potenciaCv: potenciaCv, 
+      disponivel: disponivel);
+  }
 }
