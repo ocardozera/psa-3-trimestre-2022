@@ -50,4 +50,10 @@ class CNH {
       return false;
     }
   }
+
+  int anosDeCnh() {
+    DateTime dataAtual = new DateTime.now();
+    int anos = dataAtual.year - dataPrimeiraHabilitacao.year;
+    return anos;
+  }
 }
