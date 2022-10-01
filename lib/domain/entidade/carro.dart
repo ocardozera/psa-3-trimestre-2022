@@ -1,6 +1,6 @@
+import '../casos_uso/consultar_placa.dart';
 import '../dados/dados_carro.dart';
-import '../erro/cnh_invalida.dart';
-import '../erro/idade_nao_permitida.dart';
+import '../erro/dados_inconsistentes.dart';
 import '../erro/km_maxima_atingida.dart';
 import '../dados/tipo_combustivel.dart';
 
@@ -13,7 +13,7 @@ class Carro {
   late String placa;
   late int renavam;
   late String chassis;
-  late String categoria; //passeio, utilitario, camionete, suv, crossover
+  late String categoria;
   late TipoCombustivel tipoCombustivel;
   late int potenciaCv;
   late bool disponivel;
@@ -46,11 +46,16 @@ class Carro {
     var potenciaCv = dadosCarro.potenciaCv;
     var disponivel = dadosCarro.disponivel;
 
-    if (validaKmMaxima()) {
+    if (validarDadosSensiveis()) {
+      throw DadosInconsistentes();
+    }
+
+    if (validaKmMaxima(quilometragem)) {
       throw KmMaximaAtingida();
     }
 
     this.modelo = modelo;
+    this.valorBaseLocacao = valorBaseLocacao;
     this.quilometragem = quilometragem;
     this.anoFabricacao = anoFabricacao;
     this.anoModelo = anoModelo;
@@ -63,8 +68,22 @@ class Carro {
     this.disponivel = disponivel;
   }
 
-  bool validaKmMaxima() {
+  bool validaKmMaxima(int quilometragem) {
     if (quilometragem >= 100000) {
+      return true;
+    }
+    return false;
+  }
+
+  bool validarDadosSensiveis() {
+    DadosCarro dadosOficiais = BuscarDadosCarro().buscarPelaPlaca(placa);
+
+    if (dadosOficiais.anoFabricacao != anoFabricacao &&
+        dadosOficiais.anoModelo != anoModelo &&
+        dadosOficiais.placa != placa &&
+        dadosOficiais.renavam != renavam &&
+        dadosOficiais.chassis != chassis &&
+        dadosOficiais.tipoCombustivel != tipoCombustivel) {
       return true;
     }
     return false;
