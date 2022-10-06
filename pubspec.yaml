@@ -1,0 +1,4 @@
+name: locadora_app
+
+dependencies:
+  mailer: ^3.2.1
